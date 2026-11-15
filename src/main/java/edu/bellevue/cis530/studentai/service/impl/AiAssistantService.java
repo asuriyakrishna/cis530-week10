@@ -82,7 +82,7 @@ public class AiAssistantService implements AiService {
 	@Override
 	public AiTextResponse ragHelp(RagHelpRequest request) {
 		String answer = chatClient.prompt()
-				.advisors(new QuestionAnswerAdvisor(vectorStore))
+				.advisors(QuestionAnswerAdvisor.builder(vectorStore).build())
 				.user(request.getQuestion())
 				.call()
 				.content();
